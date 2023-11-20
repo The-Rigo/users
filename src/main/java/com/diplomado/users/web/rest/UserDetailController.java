@@ -20,7 +20,7 @@ public class UserDetailController {
 
 
     @GetMapping
-    public ResponseEntity<List<UserDetail>> listDetail(@PathVariable final Integer userId){
+    public ResponseEntity<List<UserDetail>> listDetail(@PathVariable final Long userId){
         return ResponseEntity.ok().body(userDetailService.getUserDetailByUser(userId));
     }
 

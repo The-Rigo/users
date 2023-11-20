@@ -17,8 +17,8 @@ public class UserDetail {
     private Integer age;
     private LocalDate birth_day;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
     public UserDetail(String first_name, String last_name, Integer age, LocalDate birth_day, User user) {

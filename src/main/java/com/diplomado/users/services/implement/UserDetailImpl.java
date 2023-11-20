@@ -18,7 +18,7 @@ public class UserDetailImpl implements UserDetailService {
     }
 
     @Override
-    public List<UserDetail> getUserDetailByUser(Integer userId) {
+    public List<UserDetail> getUserDetailByUser(Long userId) {
         return userDetailRepository.findAll().stream()
                 .filter(userDetail -> Objects.equals(userDetail.getUser().getId(), userId))
                 .collect(Collectors.toList());

@@ -5,6 +5,6 @@ import com.diplomado.users.domain.entities.UserDetail;
 import java.util.List;
 
 public interface UserDetailService {
-    List<UserDetail> getUserDetailByUser(Integer userId);
+    List<UserDetail> getUserDetailByUser(Long userId);
     UserDetail save(UserDetail userDetail);
 }
