@@ -16,14 +16,17 @@ public class UserDetail {
     private String last_name;
     private Integer age;
     private LocalDate birth_day;
-    //private User users;
 
-    public UserDetail(String first_name, String last_name, Integer age, LocalDate birth_day, User users) {
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public UserDetail(String first_name, String last_name, Integer age, LocalDate birth_day, User user) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.age = age;
         this.birth_day = birth_day;
-        //this.users = users;
+        this.user = user;
     }
 
     public UserDetail() {
@@ -69,15 +72,15 @@ public class UserDetail {
         this.birth_day = birth_day;
     }
 
-    /*public User getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(User users) {
-        this.users = users;
-    }*/
+    public void setUser(User users) {
+        this.user = users;
+    }
 
-    /*@Override
+    @Override
     public String toString() {
         return "UserDetail{" +
                 "id=" + id +
@@ -85,7 +88,7 @@ public class UserDetail {
                 ", last_name='" + last_name + '\'' +
                 ", age=" + age +
                 ", birth_day=" + birth_day +
-                ", users=" + users +
+                ", users=" + user +
                 '}';
-    }*/
+    }
 }

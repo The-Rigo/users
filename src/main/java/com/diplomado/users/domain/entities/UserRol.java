@@ -15,14 +15,19 @@ public class UserRol {
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
     private LocalDateTime created_id;
     //many to one
-    /*private User user;
-    private Rol rol;*/
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
 
     public UserRol(Boolean active, LocalDateTime created_id, User user, Rol rol) {
         this.active = active;
         this.created_id = created_id;
-        //this.user = user;
-        //this.rol = rol;
+        this.user = user;
+        this.rol = rol;
     }
 
     public UserRol() {
@@ -52,7 +57,7 @@ public class UserRol {
         this.created_id = created_id;
     }
 
-    /*public User getUser() {
+    public User getUser() {
         return user;
     }
 
@@ -77,5 +82,5 @@ public class UserRol {
                 ", user=" + user +
                 ", rol=" + rol +
                 '}';
-    }*/
+    }
 }

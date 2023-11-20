@@ -1,8 +1,12 @@
 package com.diplomado.users;
 
+import com.diplomado.users.domain.entities.User;
+import com.diplomado.users.repositories.UserRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
@@ -11,8 +15,11 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Optional;
 @SpringBootApplication
-public class UsersApplication {
+public class UsersApplication{
+
 	private static final Logger log = LoggerFactory.getLogger(UsersApplication.class);
+
+
 	public static void main(String[] args) {
 		SpringApplication springApplication = new SpringApplication(UsersApplication.class);
 		logApplicationStarup(springApplication.run(args).getEnvironment());
@@ -52,5 +59,6 @@ public class UsersApplication {
 				env.getActiveProfiles()
 		);
 	}
+
 
 }
