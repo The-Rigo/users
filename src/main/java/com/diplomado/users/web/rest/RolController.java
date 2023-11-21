@@ -1,12 +1,17 @@
 package com.diplomado.users.web.rest;
 
-import com.diplomado.users.domain.entities.Rol;
+
+import com.diplomado.users.dto.RolDTO;
 import com.diplomado.users.services.RolService;
+import lombok.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -19,26 +24,42 @@ public class RolController {
     }
 
     @GetMapping
-    public List<Rol> getAllRoles(){
-        return rolService.getAllRoles();
+    public ResponseEntity<List<RolDTO>> getAllRoles(){
+        return ResponseEntity.ok().body(rolService.getAllRoles());
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Rol> getRolById(@PathVariable Integer id){
-        Optional<Rol> rol = rolService.getRolById(id);
-        return rol.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @GetMapping("/{id}")
+    public ResponseEntity<RolDTO> getRolById(@PathVariable final Integer id){
+        return ResponseEntity.ok().body(rolService.getRolById(id).orElseThrow(()-> new IllegalArgumentException()));
     }
 
     @PostMapping
-    public ResponseEntity<Rol> createOrUpdateRol(@RequestBody Rol rol){
-        Rol createdOrUpdatedRol = rolService.createOrUpdateRol(rol);
-        return new ResponseEntity<>(createdOrUpdatedRol, HttpStatus.CREATED);
+    public ResponseEntity<RolDTO> save(@RequestBody final RolDTO dto) throws URISyntaxException {
+        if (dto.getId() != null){
+            throw new IllegalArgumentException("I new course cannot already have an id.");
+        }
+        RolDTO rolDTO =this.rolService.save(dto);
+
+        return ResponseEntity
+                .created(new URI("/v1/roles/"+rolDTO.getId()))
+                .body(rolDTO);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<RolDTO> edit(@PathVariable final Integer id, @RequestBody final RolDTO dto) throws URISyntaxException{
+        if (dto.getId() != null){
+            throw new IllegalArgumentException("Invalid course id, null value");
+        }
+        if (!Objects.equals(dto.getId(),id)){
+            throw  new IllegalArgumentException("Invalid id_rol");
+        }
+        return ResponseEntity.ok().body(this.rolService.edit(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteRolById(@PathVariable Integer id) {
+    public ResponseEntity<Void>delete(@PathVariable final Integer id){
         rolService.deleteRolById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
+
 }

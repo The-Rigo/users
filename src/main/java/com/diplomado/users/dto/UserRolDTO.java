@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -14,11 +16,13 @@ import lombok.ToString;
 public class UserRolDTO {
     private Integer id;
     private Boolean active;
+    private LocalDateTime create_at;
 
-    private Rol rolId;
-    private User userId;
+    private User user;
+    private Rol rol;
 
-    private String firstName;
-    private String lastName;
-    private String rolName;
+    private String user_name;
+    private String first_name;
+    private String last_name;
+    private String rol_name;
 }
