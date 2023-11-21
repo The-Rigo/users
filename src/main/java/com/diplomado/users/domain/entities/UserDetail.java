@@ -17,16 +17,15 @@ public class UserDetail {
     private Integer age;
     private LocalDate birth_day;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;
 
-    public UserDetail(String first_name, String last_name, Integer age, LocalDate birth_day, User user) {
+    public UserDetail(String first_name, String last_name, Integer age, LocalDate birth_day) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.age = age;
         this.birth_day = birth_day;
-        this.user = user;
     }
 
     public UserDetail() {

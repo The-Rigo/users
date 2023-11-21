@@ -15,22 +15,22 @@ public class RolServiceImple implements RolService {
     public RolServiceImple(RolRepository rolRepository) {
         this.rolRepository = rolRepository;
     }
-
+    //Read
     @Override
     public List<Rol> getAllRoles() {
         return rolRepository.findAll();
     }
-
+    //read one rol
     @Override
     public Optional<Rol> getRolById(Integer id) {
         return rolRepository.findById(id);
     }
-
+    //Create o update
     @Override
     public Rol createOrUpdateRol(Rol rol) {
         return rolRepository.save(rol);
     }
-
+    //Delete
     @Override
     public void deleteRolById(Integer id) {
         rolRepository.deleteById(id);

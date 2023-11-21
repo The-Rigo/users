@@ -23,7 +23,7 @@ public class RolController {
         return rolService.getAllRoles();
     }
 
-    @GetMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Rol> getRolById(@PathVariable Integer id){
         Optional<Rol> rol = rolService.getRolById(id);
         return rol.map(value -> new ResponseEntity<>(value, HttpStatus.OK))

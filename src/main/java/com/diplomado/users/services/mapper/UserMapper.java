@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserMapper implements CustomMapper<UserDTO, User>{
-
     @Override
     public UserDTO toDto(User user) {
         UserDTO userDTO = new UserDTO();
@@ -14,11 +13,35 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword(user.getPassword());
         userDTO.setEmail(user.getEmail());
-        return null;
+        return userDTO;
     }
 
     @Override
     public User toEntity(UserDTO userDTO) {
-        return null;
+        User user =new User();
+        user.setId(userDTO.getId());
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
+        user.setEmail(userDTO.getEmail());
+        return user;
+    }
+
+    public UserDTO toDtoDetail(User user){
+        UserDTO dto = new UserDTO();
+        dto.setId(user.getId());
+        dto.setUsername(user.getUsername());
+        dto.setPassword(user.getPassword());
+        dto.setEmail(user.getEmail());
+        dto.setCreatedAt(user.getCreated_at());
+        if (user.getUserDetail()!=null){
+            dto.setFirst_name(user.getUserDetail().getFirst_name());
+            dto.setLast_name(user.getUserDetail().getLast_name());
+            dto.setAge(user.getUserDetail().getAge());
+        }else{
+            dto.setFirst_name(null);
+            dto.setLast_name(null);
+            dto.setAge(null);
+        }
+        return dto;
     }
 }

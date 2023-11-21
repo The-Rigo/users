@@ -1,6 +1,8 @@
 package com.diplomado.users.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import jakarta.persistence.*;
+
 
 import java.time.LocalDateTime;
 
@@ -15,13 +17,18 @@ public class User {
     private String password;
     private String email;
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
-    private LocalDateTime created_id;
+    private LocalDateTime created_at;
 
-    public User(String username, String password, String email, LocalDateTime created_id) {
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private UserDetail userDetail;
+
+
+
+    public User(String username, String password, String email, LocalDateTime created_at) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.created_id = created_id;
+        this.created_at = created_at;
     }
 
     public User() {
@@ -59,12 +66,20 @@ public class User {
         this.email = email;
     }
 
-    public LocalDateTime getCreated_id() {
-        return created_id;
+    public LocalDateTime getCreated_at() {
+        return created_at;
     }
 
-    public void setCreated_id(LocalDateTime created_id) {
-        this.created_id = created_id;
+    public void setCreated_at(LocalDateTime created_id) {
+        this.created_at = created_at;
+    }
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
     }
 
     @Override
@@ -74,7 +89,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
-                ", created_id=" + created_id +
+                ", created_id=" + created_at +
                 '}';
     }
 }
