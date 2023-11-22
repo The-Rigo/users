@@ -23,17 +23,17 @@ public class RolController {
         this.rolService = rolService;
     }
 
-    @GetMapping
+    @GetMapping//ok
     public ResponseEntity<List<RolDTO>> getAllRoles(){
         return ResponseEntity.ok().body(rolService.getAllRoles());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{id}")//ok
     public ResponseEntity<RolDTO> getRolById(@PathVariable final Integer id){
         return ResponseEntity.ok().body(rolService.getRolById(id).orElseThrow(()-> new IllegalArgumentException()));
     }
 
-    @PostMapping
+    @PostMapping//ok
     public ResponseEntity<RolDTO> save(@RequestBody final RolDTO dto) throws URISyntaxException {
         if (dto.getId() != null){
             throw new IllegalArgumentException("I new course cannot already have an id.");
@@ -45,18 +45,18 @@ public class RolController {
                 .body(rolDTO);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}")//ok
     public ResponseEntity<RolDTO> edit(@PathVariable final Integer id, @RequestBody final RolDTO dto) throws URISyntaxException{
         if (dto.getId() != null){
-            throw new IllegalArgumentException("Invalid course id, null value");
+            throw new IllegalArgumentException("Invalid rol_id, null value");
         }
-        if (!Objects.equals(dto.getId(),id)){
-            throw  new IllegalArgumentException("Invalid id_rol");
+        if (Objects.equals(dto.getId(),id)){
+            throw  new IllegalArgumentException("Invalid rol_id");
         }
         return ResponseEntity.ok().body(this.rolService.edit(id, dto));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{id}")//ok
     public ResponseEntity<Void>delete(@PathVariable final Integer id){
         rolService.deleteRolById(id);
         return ResponseEntity.noContent().build();

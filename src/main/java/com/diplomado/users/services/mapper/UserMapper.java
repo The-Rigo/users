@@ -37,10 +37,12 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
             dto.setFirst_name(user.getUserDetail().getFirst_name());
             dto.setLast_name(user.getUserDetail().getLast_name());
             dto.setAge(user.getUserDetail().getAge());
+            dto.setBirth_day(user.getUserDetail().getBirth_day());
         }else{
             dto.setFirst_name(null);
             dto.setLast_name(null);
             dto.setAge(null);
+            dto.setBirth_day(null);
         }
         return dto;
     }

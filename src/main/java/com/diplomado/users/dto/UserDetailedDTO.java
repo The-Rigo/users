@@ -1,5 +1,6 @@
 package com.diplomado.users.dto;
 
+import com.diplomado.users.domain.entities.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,10 +14,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class UserDetailedDTO {
     private Long id;
-    private String username;
-    private String email;
     private String firstName;
     private String lastName;
     private Integer age;
     private Date birthDay;
+    private User user;
 }

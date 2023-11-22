@@ -2,7 +2,9 @@ package com.diplomado.users.services.mapper;
 
 import com.diplomado.users.domain.entities.UserRol;
 import com.diplomado.users.dto.UserRolDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserRolMapper implements CustomMapper<UserRolDTO, UserRol>{
     @Override
     public UserRolDTO toDto(UserRol userRol) {

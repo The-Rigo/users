@@ -1,6 +1,8 @@
 package com.diplomado.users.domain.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -18,14 +20,16 @@ public class UserDetail {
     private LocalDate birth_day;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @JoinColumn(name = "user_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     private User user;
 
-    public UserDetail(String first_name, String last_name, Integer age, LocalDate birth_day) {
+    public UserDetail(String first_name, String last_name, Integer age, LocalDate birth_day, User user) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.age = age;
         this.birth_day = birth_day;
+        this.user = user;
     }
 
     public UserDetail() {
