@@ -2,6 +2,7 @@ package com.diplomado.users.web.rest;
 
 
 import com.diplomado.users.dto.RolDTO;
+import com.diplomado.users.exception.ModelNotFoundException;
 import com.diplomado.users.services.RolService;
 import lombok.Value;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ public class RolController {
 
     @GetMapping("/{id}")//ok
     public ResponseEntity<RolDTO> getRolById(@PathVariable final Integer id){
-        return ResponseEntity.ok().body(rolService.getRolById(id).orElseThrow(()-> new IllegalArgumentException()));
+        return ResponseEntity.ok().body(rolService.getRolById(id).orElseThrow(()-> new ModelNotFoundException("El rol_id no encontrado: "+id)));
     }
 
     @PostMapping//ok

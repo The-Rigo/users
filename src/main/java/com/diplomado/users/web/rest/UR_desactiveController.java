@@ -12,10 +12,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/users")
-public class UR_ActiveController {
+public class UR_desactiveController {
     private final UserRolService userRolService;
 
-    public UR_ActiveController(UserRolService userRolService) {
+    public UR_desactiveController(UserRolService userRolService) {
         this.userRolService = userRolService;
     }
 
