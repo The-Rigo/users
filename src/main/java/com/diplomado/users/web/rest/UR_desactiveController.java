@@ -24,24 +24,4 @@ public class UR_desactiveController {
         return ResponseEntity.ok().body(userRolService.getUserRol(idRol));
     }
 
-    @PatchMapping("/active/{userRolID}")//mal
-    public ResponseEntity<UserRolDTO> editActive(@RequestBody final UserRolDTO userRolDTO,
-                                                 @PathVariable final Integer userRolID ) throws URISyntaxException {
-
-        Optional<UserRolDTO> existente = userRolService.getUserRolById(userRolID);
-        if (userRolDTO.getId() == null) {
-            throw new IllegalArgumentException("Invalid user id, the value is null");
-        }
-        if (!Objects.equals(userRolDTO.getId(), userRolID)) {
-            throw new IllegalArgumentException("the user id do not exist");
-        }
-
-        userRolDTO.setCreate_at(existente.get().getCreate_at());
-        userRolDTO.setUser(existente.get().getUser());
-        userRolDTO.setRol(existente.get().getRol());
-        return ResponseEntity
-                .ok()
-                .body(this.userRolService.save(userRolDTO));
-
-    }
 }
