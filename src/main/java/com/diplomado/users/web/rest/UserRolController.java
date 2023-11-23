@@ -9,6 +9,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/v1/users/{user_id}/rol")
@@ -38,5 +39,16 @@ public class UserRolController {
                 .created(new URI("/v1/users/"+ userRolDB.getUser().getId() + "/rol/" + userRolDB.getId()))
                 .body(userRolDB);
 
+    }
+
+    @PatchMapping("/{userRolId}/inactive")//ok
+    public ResponseEntity<UserRolDTO> deactivateUserRol(
+            @PathVariable Long user_id,
+            @PathVariable Integer userRolId) {
+        UserRolDTO userRolDTO = userRolService.getUserRolById(userRolId)
+                .orElseThrow(() -> new NoSuchElementException("UserRol not found"));
+        userRolDTO.setActive(false);
+        UserRolDTO updatedUserRol = userRolService.save(userRolDTO);
+        return ResponseEntity.ok().body(updatedUserRol);
     }
 }

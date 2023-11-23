@@ -65,6 +65,6 @@ public class UserController {
     @DeleteMapping("/{id}")//ok
     public ResponseEntity<Void> deleteRolById(@PathVariable final Long id) {
         userService.deleteUser(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.noContent().build();
     }
 }
