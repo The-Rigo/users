@@ -5,7 +5,7 @@ import com.diplomado.users.dto.UserDTO;
 import com.diplomado.users.exception.ModelNotFoundException;
 import com.diplomado.users.services.UserService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,20 +44,20 @@ public class UserController {
         if(dto.getId() != null){
             throw new IllegalArgumentException("I new user cannot already have an id.");
         }
-        dto.setCreatedAt(LocalDateTime.now());
+        dto.setCreated_at(LocalDateTime.now());
         UserDTO userDTO = this.userService.save(dto);
         return ResponseEntity.created(new URI("/v1/users/"+userDTO.getId()))
                 .body(userDTO);
     }
     @PutMapping("/{id}")//ok
-    public ResponseEntity<UserDTO> editUser(@RequestBody final UserDTO dto, @PathVariable final Long id) throws URISyntaxException {
+    public ResponseEntity<UserDTO> editUser(@RequestBody final UserDTO dto, @PathVariable final Long id) {
         if(dto.getId() != null){
             throw new IllegalArgumentException("Invalid user_id, null value");
         }
         if (Objects.equals(dto.getId(),id)){
             throw new IllegalArgumentException("Invalid user_id");
         }
-        dto.setCreatedAt(LocalDateTime.now());
+        dto.setCreated_at(LocalDateTime.now());
 
         return ResponseEntity.ok().body(this.userService.edit(id, dto));
     }

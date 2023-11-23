@@ -1,8 +1,5 @@
 package com.diplomado.users.services;
 
-
-import com.diplomado.users.domain.entities.User;
-import com.diplomado.users.dto.RolDTO;
 import com.diplomado.users.dto.UserDTO;
 
 

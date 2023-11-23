@@ -13,6 +13,7 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword(user.getPassword());
         userDTO.setEmail(user.getEmail());
+        userDTO.setCreated_at(user.getCreated_at());
         return userDTO;
     }
 
@@ -23,6 +24,7 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
         user.setEmail(userDTO.getEmail());
+        user.setCreated_at(userDTO.getCreated_at());
         return user;
     }
 
@@ -32,7 +34,7 @@ public class UserMapper implements CustomMapper<UserDTO, User>{
         dto.setUsername(user.getUsername());
         dto.setPassword(user.getPassword());
         dto.setEmail(user.getEmail());
-        dto.setCreatedAt(user.getCreated_at());
+        dto.setCreated_at(user.getCreated_at());
         if (user.getUserDetail()!=null){
             dto.setFirst_name(user.getUserDetail().getFirst_name());
             dto.setLast_name(user.getUserDetail().getLast_name());

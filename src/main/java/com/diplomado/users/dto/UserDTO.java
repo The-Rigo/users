@@ -27,7 +27,7 @@ public class UserDTO {
     @NotNull(message = "Email cannot be null")
     @NotBlank(message = "Email cannot be blank")
     private String email;
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
     private String first_name;
     private String last_name;

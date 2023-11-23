@@ -2,7 +2,6 @@ package com.diplomado.users.services.implement;
 
 import com.diplomado.users.domain.entities.User;
 import com.diplomado.users.domain.entities.UserDetail;
-import com.diplomado.users.dto.RolDTO;
 import com.diplomado.users.dto.UserDTO;
 import com.diplomado.users.repositories.UserDetailRepository;
 import com.diplomado.users.repositories.UserRepository;
@@ -23,15 +22,11 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final UserDetailRepository userDetailRepository;
-    private final UserRolRepository userRolRepository;
-    private final UserRolMapper userRolMapper;
 
-    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, UserDetailRepository userDetailRepository, UserRolRepository userRolRepository, UserRolMapper userRolMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserMapper userMapper, UserDetailRepository userDetailRepository) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.userDetailRepository = userDetailRepository;
-        this.userRolRepository = userRolRepository;
-        this.userRolMapper = userRolMapper;
     }
 
     @Override
@@ -55,7 +50,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDTO save(UserDTO dto) {
         User user = userRepository.save(userMapper.toEntity(dto));
-        userDetailRepository.save(new UserDetail(dto.getFirst_name(), dto.getLast_name(), dto.getAge(), null,user));
+        userDetailRepository.save(new UserDetail(dto.getFirst_name(), dto.getLast_name(), dto.getAge(), dto.getBirth_day(),user));
         return userMapper.toDto(user);
     }
 
