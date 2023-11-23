@@ -2,6 +2,7 @@ package com.diplomado.users.web.rest;
 
 
 import com.diplomado.users.dto.UserDTO;
+import com.diplomado.users.exception.ModelNotFoundException;
 import com.diplomado.users.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,7 @@ public class UserController {
     public ResponseEntity<UserDTO> getUsersDetail(@PathVariable final Long id) {
         return ResponseEntity
                 .ok()
-                .body(userService.getUsersById(id).orElseThrow(() -> new IllegalArgumentException("Not Found: " + id)));
+                .body(userService.getUsersById(id).orElseThrow(() -> new ModelNotFoundException("El user_id no encontrado: "+id)));
     }
     @PostMapping//ok, valid
     public ResponseEntity<UserDTO> createUser(@Valid @RequestBody final UserDTO dto) throws URISyntaxException {
