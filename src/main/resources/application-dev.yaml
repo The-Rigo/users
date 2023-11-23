@@ -6,7 +6,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/dev_users_db
+    url: jdbc:postgresql://localhost:5432/dev_user_db
     username: rigo
     password: password
   jpa:
