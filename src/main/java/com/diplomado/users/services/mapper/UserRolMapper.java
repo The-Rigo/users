@@ -47,15 +47,4 @@ public class UserRolMapper implements CustomMapper<UserRolDTO, UserRol>{
         }
         return dto;
     }
-
-    public UserRol toEntityInactivaRol(UserRolDTO userRolDTO){
-        UserRol userRol = new UserRol();
-        if (userRol.getUser()!=null && userRol.getRol()!=null){
-            userRol.setActive(userRolDTO.getActive());
-        } else {
-            userRol.setUser(null);
-            userRol.setRol(null);
-        }
-        return userRol;
-    }
 }

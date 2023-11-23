@@ -4,8 +4,7 @@ package com.diplomado.users.web.rest;
 import com.diplomado.users.dto.RolDTO;
 import com.diplomado.users.exception.ModelNotFoundException;
 import com.diplomado.users.services.RolService;
-import lombok.Value;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +12,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/v1/roles")

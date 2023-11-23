@@ -1,7 +1,6 @@
 package com.diplomado.users.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
@@ -73,7 +72,7 @@ public class User {
         return created_at;
     }
 
-    public void setCreated_at(LocalDateTime created_id) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
