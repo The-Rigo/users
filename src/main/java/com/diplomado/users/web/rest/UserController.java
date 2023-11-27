@@ -51,10 +51,10 @@ public class UserController {
     }
     @PutMapping("/{id}")//ok
     public ResponseEntity<UserDTO> editUser(@RequestBody final UserDTO dto, @PathVariable final Long id) {
-        if(dto.getId() != null){
+        if(dto.getId() == null){
             throw new IllegalArgumentException("Invalid user_id, null value");
         }
-        if (Objects.equals(dto.getId(),id)){
+        if (!Objects.equals(dto.getId(),id)){
             throw new IllegalArgumentException("Invalid user_id");
         }
         dto.setCreated_at(LocalDateTime.now());
